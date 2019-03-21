@@ -1,8 +1,8 @@
-// const Login = resolve => {
-//   require.ensure(['@/components/business-modules/login/Login'], () => {
-//     resolve(require('@/components/business-modules/login/Login'))
-//   })
-// };
+const Login = resolve => {
+  require.ensure(['@/components/business-modules/login/Login'], () => {
+    resolve(require('@/components/business-modules/login/Login'))
+  })
+};
 
 const Home = resolve => {
   require.ensure(['@/components/public-modules/Home'], () => {
@@ -52,12 +52,12 @@ const contentaudit = resolve => {
 
 const routers = [
   {path: '/', redirect: '/404',hidden:true},
-  // {
-  //   path: '/login',
-  //   component: Login,
-  //   name: '',
-  //   hidden: true
-  // },
+  {
+    path: '/login',
+    component: Login,
+    name: '',
+    hidden: true
+  },
   {
     path: '/404',
     component: NotFound,
@@ -71,10 +71,10 @@ const routers = [
     children: [
       {path: '/main', component: Main, name: '主页', hidden: true},
       {path: '/contentaudit', component: contentaudit, name: '内容审核'},
-      {path: '/applicationconfig', component: applicationConfig, name: '应用配置'},
-      {path: '/strategyConfig', component: strategyConfig, name: '策略配置'},
-      {path: '/mockConfigGroup', component:  mockConfigGroup, name: '分组配置'},
-      {path: '/mockConfig', component:  mockConfig, name: '挡板配置'}
+      // {path: '/applicationconfig', component: applicationConfig, name: '应用配置'},
+      // {path: '/strategyConfig', component: strategyConfig, name: '策略配置'},
+      // {path: '/mockConfigGroup', component:  mockConfigGroup, name: '分组配置'},
+      // {path: '/mockConfig', component:  mockConfig, name: '挡板配置'}
     ]
   }, {
     path: '',

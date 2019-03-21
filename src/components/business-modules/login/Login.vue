@@ -1,6 +1,6 @@
 <template>
   <el-form :model="ruleForm2" :rules="rules2" ref="ruleForm2" label-position="left" label-width="0px" class="demo-ruleForm login-container">
-    <h3 class="title">挡板配置系统</h3>
+    <h3 class="title">内容审核系统</h3>
     <el-form-item prop="account">
       <el-input type="text" v-model="ruleForm2.account" auto-complete="off" placeholder="账号"></el-input>
     </el-form-item>
@@ -42,8 +42,8 @@
             var loginParams = { username: this.ruleForm2.account, password: this.ruleForm2.checkPass };
             let user = {name:"admin"};
             if(this.ruleForm2.account == 'admin' && this.ruleForm2.checkPass == 'admin!1234'){
-              sessionStorage.setItem('user', JSON.stringify(user));
-              this.$router.push({ path: '/main' })
+              sessionStorage.setItem('user','admin');
+              this.$router.push({ path: '/main' });
             }else {
               this.$message.error("用户名密码错误");
               this.logining = false;

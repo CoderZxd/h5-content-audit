@@ -1,58 +1,98 @@
 <template>
 	<div class="content-audit-wrap">
     <el-form :model="dataForAudit" status-icon label-width="100px">
-      <el-form-item label="用户发布的数据标识">
-        <el-input v-model="dataForAudit.id"></el-input>
+      <el-row :gutter="20">
+        <el-col :span="6">
+          <el-form-item label="数据标识">
+            <el-input v-model="dataForAudit.id"></el-input>
+          </el-form-item>
+        </el-col>
+        <el-col :span="6">
+          <el-form-item label="用户id">
+            <el-input v-model="dataForAudit.uid"></el-input>
+          </el-form-item>
+        </el-col>
+        <el-col :span="6">
+          <el-form-item label="用户ip">
+            <el-input v-model="dataForAudit.ip"></el-input>
+          </el-form-item>
+        </el-col>
+        <el-col :span="6">
+          <el-form-item label="用户设备号">
+            <el-input v-model="dataForAudit.device"></el-input>
+          </el-form-item>
+        </el-col>
+      </el-row>
+      <el-row :gutter="20">
+        <el-col :span="6">
+          <el-form-item label="内容发布时间">
+            <el-input v-model="dataForAudit.publish_date"></el-input>
+          </el-form-item>
+        </el-col>
+        <el-col :span="6">
+          <el-form-item label="产品名称">
+            <el-input v-model="dataForAudit.app_name"></el-input>
+          </el-form-item>
+        </el-col>
+        <el-col :span="6">
+          <el-form-item label="平台名称">
+            <el-input v-model="dataForAudit.name"></el-input>
+          </el-form-item>
+        </el-col>
+        <el-col :span="6">
+          <el-form-item label="入库时间">
+            <el-input v-model="dataForAudit.created"></el-input>
+          </el-form-item>
+        </el-col>
+      </el-row>
+      <el-row :gutter="20">
+        <el-col :span="6">
+          <el-form-item label="Api版本号">
+            <el-input v-model="dataForAudit.version"></el-input>
+          </el-form-item>
+        </el-col>
+        <el-col :span="6">
+          <el-form-item label="机器审核结果">
+            <el-input v-model="dataForAudit.sys_status"></el-input>
+          </el-form-item>
+        </el-col>
+        <el-col :span="6">
+          <el-form-item label="机器策略名称">
+            <el-input v-model="dataForAudit.sys_policy"></el-input>
+          </el-form-item>
+        </el-col>
+        <el-col :span="6">
+          <el-form-item label="数据类型">
+            <el-input v-model="dataForAudit.data_type"></el-input>
+          </el-form-item>
+        </el-col>
+      </el-row>
+      <el-row :gutter="20">
+        <el-col :span="6">
+          <el-form-item label="消息类型">
+            <el-input v-model="dataForAudit.msg_type"></el-input>
+          </el-form-item>
+        </el-col>
+        <el-col :span="6">
+          <el-form-item label="用户昵称">
+            <el-input v-model="dataForAudit.nick_name"></el-input>
+          </el-form-item>
+        </el-col>
+        <el-col :span="6">
+          <el-form-item label="用户等级">
+            <el-input v-model="dataForAudit.user_level"></el-input>
+          </el-form-item>
+        </el-col>
+        <el-col :span="6">
+          <el-form-item label="内容类型">
+            <el-input v-model="dataForAudit.type"></el-input>
+          </el-form-item>
+        </el-col>
+      </el-row>
+      <el-form-item label="用户发布内容">
+        <img v-if="dataForAudit.type && dataForAudit.type != 1" :src="dataForAudit.content" style="margin: 0 auto;"/>
+        <el-input v-else type="textarea" :rows="5" v-model="dataForAudit.content"></el-input>
       </el-form-item>
-      <el-form-item label="用户id">
-        <el-input v-model="dataForAudit.uid"></el-input>
-      </el-form-item>
-      <el-form-item label="用户ip">
-        <el-input v-model="dataForAudit.ip"></el-input>
-      </el-form-item>
-      <el-form-item label="用户设备号">
-        <el-input v-model="dataForAudit.device"></el-input>
-      </el-form-item>
-      <el-form-item label="用户内容发布时间">
-        <el-input v-model="dataForAudit.publish_date"></el-input>
-      </el-form-item>
-      <el-form-item label="产品名称">
-        <el-input v-model="dataForAudit.app_name"></el-input>
-      </el-form-item>
-      <el-form-item label="平台名称">
-        <el-input v-model="dataForAudit.name"></el-input>
-      </el-form-item>
-      <el-form-item label="入库时间">
-        <el-input v-model="dataForAudit.created"></el-input>
-      </el-form-item>
-      <el-form-item label="Api接入版本号">
-        <el-input v-model="dataForAudit.version"></el-input>
-      </el-form-item>
-      <el-form-item label="机器策略审核结果">
-        <el-input v-model="dataForAudit.sys_status"></el-input>
-      </el-form-item>
-      <el-form-item label="机器策略名称">
-        <el-input v-model="dataForAudit.sys_policy"></el-input>
-      </el-form-item>
-      <el-form-item label="数据类型">
-        <el-input v-model="dataForAudit.data_type"></el-input>
-      </el-form-item>
-      <el-form-item label="消息类型">
-        <el-input v-model="dataForAudit.msg_type"></el-input>
-      </el-form-item>
-      <el-form-item label="用户昵称">
-        <el-input v-model="dataForAudit.nick_name"></el-input>
-      </el-form-item>
-      <el-form-item label="用户等级">
-        <el-input v-model="dataForAudit.user_level"></el-input>
-      </el-form-item>
-      <el-form-item label="内容类型">
-        <el-input v-model="dataForAudit.type"></el-input>
-      </el-form-item>
-      <el-form-item label="用户发布的内容">
-        <el-input v-model="dataForAudit.content"></el-input>
-      </el-form-item>
-
       <el-form-item>
         <el-tooltip class="item" effect="dark" content="可按下键盘字母y或者Shift+y快速审核通过" placement="top">
           <el-button type="success" @click="passData">通过(Y)</el-button>

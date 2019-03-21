@@ -18,12 +18,6 @@
 					</el-dropdown-menu>
 				</el-dropdown>
 			</el-col>
-      <el-col :span="1" style="float: right">
-        <div>
-          <!--<ui class="faq"><a href="http://confluence.ql.corp/pages/viewpage.action?pageId=23803965" target="_brank" style="text-decoration: none">系统介绍</a></ui>-->
-          <i class="el-icon-info" title="系统介绍" @click="systemInfo" style="cursor: pointer"></i>
-        </div>
-      </el-col>
 		</el-row>
 		<el-row  class="main">
 			<aside :class="collapsed?'menu-collapsed':'menu-expanded'">
@@ -84,9 +78,6 @@
 			}
 		},
 		methods: {
-      systemInfo(){
-        window.open("http://confluence.ql.corp/pages/viewpage.action?pageId=23803965", "_blank");
-      },
 			onSubmit() {
 				console.log('submit!');
 			},
@@ -110,16 +101,9 @@
 				this.$confirm('确认退出吗?', '提示', {
 					//type: 'warning'
 				}).then(() => {
-					    sessionStorage.removeItem('user');
-              var jsessionid = sessionStorage.getItem('jsessionid') ? sessionStorage.getItem('jsessionid') : '';
-              var logoutUrl = '/fx-mock/sso/user/logout';
-              if(jsessionid != '')
-              {
-                location.href = logoutUrl + ';jsessionid=' + jsessionid;
-              } else {
-                location.href = logoutUrl;
-              }
-				}).catch(() => {
+          sessionStorage.removeItem('user');
+          this.$router.push({ path: '/login' });
+        }).catch(() => {
 
 				});
 
@@ -142,8 +126,11 @@
       }
 		},
 		mounted() {
-		  this.$store.dispatch('getAllProductLine').then(val => {
-    	 });
+      if(!sessionStorage.getItem('user')){
+        this.$router.push({ path: '/login' });
+      }else{
+        this.sysUserName = sessionStorage.getItem('user');
+      }
     	 var tmpThis = this;
 //		  $.ajax({
 //          url:  '/fx-mock/sso/user/getUsername',
