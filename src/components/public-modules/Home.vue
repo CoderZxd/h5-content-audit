@@ -131,20 +131,6 @@
       }else{
         this.sysUserName = sessionStorage.getItem('user');
       }
-    	 var tmpThis = this;
-//		  $.ajax({
-//          url:  '/fx-mock/sso/user/getUsername',
-//          type: "POST",
-//          processData: false,
-//          contentType: false,
-//          async: true,
-//          success: function(response) {
-//              if (response.error == '00000000') {
-//                  sessionStorage.setItem('user', response.data.username);
-//                  tmpThis.sysUserName = sessionStorage.getItem('user');
-//              }
-//          }
-//          });
 		}
 	}
 

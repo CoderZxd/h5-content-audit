@@ -104,20 +104,7 @@ var baseUrl = window.baseUrl;
 // var baseUrl = "http://192.168.25.61:8888";
 //所有请求路径参数配置入口
 const urlApi = {
-    baseUrl : baseUrl,
-    systemConfig:{
-      query: Inherit.Class(function(){
-        this.url = urlApi.baseUrl + "/systemConfig/query";
-      }),
-      save: Inherit.Class(function(){
-        this.url = urlApi.baseUrl + "/systemConfig/save";
-      })
-    },
-    user : {
-      login :Inherit.Class(function(){//登录
-        this.url = urlApi.baseUrl+"/user/login";
-      })
-    },
+  baseUrl : baseUrl,
   contentaudit:{
     getDataForAudit:Inherit.Class(function(){
         this.url = urlApi.baseUrl + "getDataForAudit";
@@ -131,104 +118,6 @@ const urlApi = {
       deleteProductLine:Inherit.Class(function(){
         this.url = urlApi.baseUrl + "/fx-mock-service/inner/prodline/deleteProductLine";
       })
-    },
-    applicationConfig: {
-      getAllApplication: Inherit.Class(function () {
-        this.url = urlApi.baseUrl + "/fx-mock-service/inner/app/getAllApplications";
-      }),
-      getAllNamespace: Inherit.Class(function () {
-        this.url = urlApi.baseUrl + "/fx-mock-service/inner/app/getAllNamespace";
-      }),
-      getNamespacesByApplicationId: Inherit.Class(function () {
-        this.url = urlApi.baseUrl + "/fx-mock-service/inner/app/getNamespacesByApplicationId";
-      }),
-      getRoutecodesByNamespace: Inherit.Class(function () {
-        this.url = urlApi.baseUrl + "/fx-mock-service/inner/app/getRoutecodesByNamespace";
-      }),
-      getAllApplicationBySearch: Inherit.Class(function () {
-        this.url = urlApi.baseUrl + "/fx-mock-service/inner/app/getAllApplicationBySearch";
-      }),
-      addApplication: Inherit.Class(function () {
-        this.url = urlApi.baseUrl + "/fx-mock-service/inner/app/addApplication";
-      }),
-      deleteApplication: Inherit.Class(function () {
-        this.url = urlApi.baseUrl + "/fx-mock-service/inner/app/deleteApplicationById";
-      }),
-      queryApplicationsByProdLine: Inherit.Class(function () {
-        this.url = urlApi.baseUrl + "/fx-mock-service/inner/app/queryApplicationsByProdLine";
-      }),
-      updateApplication:Inherit.Class(function () {
-        this.url = urlApi.baseUrl + "/fx-mock-service/inner/app/updateApplication";
-      })
-    },
-    strategyConfig:{
-      getAllStategy: Inherit.Class(function () {
-        this.url = urlApi.baseUrl + "/fx-mock-service/inner/strategy/getAll";
-      }),
-      addStrategy: Inherit.Class(function () {
-        this.url = urlApi.baseUrl + "/fx-mock-service/inner/strategy/addStrategy";
-      }),
-      deleteStrategy: Inherit.Class(function () {
-        this.url = urlApi.baseUrl + "/fx-mock-service/inner/strategy/deleteStrategy";
-      }),
-      updateStrategy: Inherit.Class(function () {
-        this.url = urlApi.baseUrl + "/fx-mock-service/inner/strategy/updateStrategy";
-      })
-    },
-    mockConfig:{
-      getAll:Inherit.Class(function () {
-          this.url = urlApi.baseUrl + "/fx-mock-service/inner/mockConfig/getAll";
-        }
-      ),
-      deleteMockConfig:Inherit.Class(function () {
-          this.url = urlApi.baseUrl + "/fx-mock-service/inner/mockConfig/delete";
-        }
-      ),
-      testMockConfig:Inherit.Class(function () {
-          this.url = urlApi.baseUrl + "/fx-mock-service/inner/mockConfig/testConfig";
-        }
-      ),
-      getMockConfigDetail:Inherit.Class(function () {
-          this.url = urlApi.baseUrl + "/fx-mock-service/inner/mockConfig/detail";
-        }
-      ),
-      updateMockConfig:Inherit.Class(function () {
-          this.url = urlApi.baseUrl + "/fx-mock-service/inner/mockConfig/update";
-        }
-      ),
-      changeStatus: Inherit.Class(function () {
-        this.url = urlApi.baseUrl + "/fx-mock-service/inner/mockConfig/changeStatus";
-      }),
-      getAllMockConfigBySearch:Inherit.Class(function () {
-          this.url = urlApi.baseUrl + "/fx-mock-service/inner/mockConfig/search";
-        }
-      ),
-      addMockConfig:Inherit.Class(function () {
-          this.url = urlApi.baseUrl + "/fx-mock-service/inner/mockConfig/add";
-        }
-      ),
-      cloneMockConfig:Inherit.Class(function () {
-          this.url = urlApi.baseUrl + "/fx-mock-service/inner/mockConfig/clone";
-        }
-      )
-    },
-    mockConfigGroup:{
-      getAll:Inherit.Class(function () {
-          this.url = urlApi.baseUrl + "/fx-mock-service/inner/mockConfigGroup/getAll";
-        }
-      ),
-      delete:Inherit.Class(function () {
-          this.url = urlApi.baseUrl + "/fx-mock-service/inner/mockConfigGroup/delete";
-        }
-      ),
-      update:Inherit.Class(function () {
-          this.url = urlApi.baseUrl + "/fx-mock-service/inner/mockConfigGroup/update";
-        }
-      ),
-      add:Inherit.Class(function () {
-          this.url = urlApi.baseUrl + "/fx-mock-service/inner/mockConfigGroup/add";
-        }
-      )
     }
   }
 
