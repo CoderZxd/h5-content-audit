@@ -36,3 +36,8 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 ###版本履历
 
 1. V1.0.0
+
+   * config/index.js 修改host和port
+   * store/index.js 添加modules
+   * route.js 配置router
+   * modules目录下创建相关module
