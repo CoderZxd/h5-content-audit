@@ -1,6 +1,6 @@
 <template>
 	<div class="content-audit-wrap">
-    <el-form :model="dataForAudit" status-icon label-width="100px">
+    <el-form :model="dataForAudit" status-icon label-width="100px" disabled>
       <el-row :gutter="20">
         <el-col :span="6">
           <el-form-item label="数据标识">
@@ -93,12 +93,20 @@
         <img v-if="dataForAudit.type && dataForAudit.type != 1" :src="dataForAudit.content" style="margin: 0 auto;"/>
         <el-input v-else type="textarea" :rows="5" v-model="dataForAudit.content"></el-input>
       </el-form-item>
+    </el-form>
+    <el-form>
       <el-form-item>
         <el-tooltip class="item" effect="dark" content="可按下键盘字母y或者Shift+y快速审核通过" placement="top">
-          <el-button type="success" @click="passData">通过(Y)</el-button>
+          <el-button type="success" @click="passData('Y')">通过(Y)</el-button>
+        </el-tooltip>
+        <el-tooltip class="item" effect="dark" content="可按下键盘字母p或者Shift+p快速审核通过" placement="top">
+          <el-button type="success" @click="passData('P')">通过(P),审核下一条</el-button>
         </el-tooltip>
         <el-tooltip class="item" effect="dark" content="可按下键盘字母n或者Shift+n快速审核不通过" placement="top">
-          <el-button type="danger" @click="failData">不通过(N)</el-button>
+          <el-button type="danger" @click="failData('N')">不通过(N)</el-button>
+        </el-tooltip>
+        <el-tooltip class="item" effect="dark" content="可按下键盘字母f或者Shift+f快速审核不通过" placement="top">
+          <el-button type="danger" @click="failData('F')">不通过(F),审核下一条</el-button>
         </el-tooltip>
       </el-form-item>
     </el-form>
@@ -108,49 +116,46 @@
 	export default {
 	    data() {
 	    	return {
-          dataForAudit:{
-
-          }
+          dataForAudit:{}
         }
 	  	},
     created(){
       var _self = this;
       //给审核页面添加键盘监听事件
       document.onkeyup = function (e) {
-        //y或者Y
-        if(e && e.keyCode == 89){
-          _self.passData();
-        }else if(e && e.keyCode == 78){ //n或者N
-          _self.failData();
+//        console.log(e);
+        //y或者Y,p或者P
+        if(e && (e.keyCode == 89 || e.keyCode == 80)){
+          _self.passData(e.keyCode == 80?'P':'Y');
+        }else if(e && (e.keyCode == 78 || e.keyCode == 70)){ //n或者N;f或者F
+          _self.failData(e.keyCode == 70?'F':'N');
         }
       }
     },
 	  	mounted(){
         this.getDataForAudit();
-//	  		var tmpThis = this;
-//        $.ajax({
-//          url:  '/fx-mock/fx-mock-service/hasPermission',
-//          type: "POST",
-//          data: {"code" : "prodLineConfig"},
-//          async: true,
-//          success: function(response) {
-//            tmpThis.hasPermission = response;
-//          }
-//        });
 	  	},
 	  	methods:{
         getDataForAudit(){
 	  			this.$store.dispatch('getDataForAudit').then(val => {
             if(val){
               this.dataForAudit = val;
+            }else{
+              this.dataForAudit = {};
             }
 	  			})
 	  		},
-        passData(){
+        passData(code){
           console.log("pass-------------------------");
+          if(code == 'P'){
+            this.getDataForAudit();
+          }
         },
-        failData(){
+        failData(code){
           console.log("fail-------------------------");
+          if(code == 'F'){
+            this.getDataForAudit();
+          }
         }
 	  	}
 	}
