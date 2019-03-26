@@ -97,16 +97,16 @@
     <el-form>
       <el-form-item>
         <el-tooltip class="item" effect="dark" content="可按下键盘字母y或者Shift+y快速审核通过" placement="top">
-          <el-button type="success" @click="passData('Y')">通过(Y)</el-button>
+          <el-button type="success" @click="passData('Y')" :disabled="isAuditDisabled">通过(Y)</el-button>
         </el-tooltip>
         <el-tooltip class="item" effect="dark" content="可按下键盘字母p或者Shift+p快速审核通过" placement="top">
-          <el-button type="success" @click="passData('P')">通过(P),审核下一条</el-button>
+          <el-button type="success" @click="passData('P')" :disabled="isAuditDisabled">通过(P),审核下一条</el-button>
         </el-tooltip>
         <el-tooltip class="item" effect="dark" content="可按下键盘字母n或者Shift+n快速审核不通过" placement="top">
-          <el-button type="danger" @click="failData('N')">不通过(N)</el-button>
+          <el-button type="danger" @click="failData('N')" :disabled="isAuditDisabled">不通过(N)</el-button>
         </el-tooltip>
         <el-tooltip class="item" effect="dark" content="可按下键盘字母f或者Shift+f快速审核不通过" placement="top">
-          <el-button type="danger" @click="failData('F')">不通过(F),审核下一条</el-button>
+          <el-button type="danger" @click="failData('F')" :disabled="isAuditDisabled">不通过(F),审核下一条</el-button>
         </el-tooltip>
         <el-tooltip class="item" effect="dark" content="可按下向下键(↓)获取下一条待审核信息" placement="top">
           <el-button type="warning" @click="getDataForAudit" :disabled="isDisabled">下一条</el-button>
@@ -120,7 +120,8 @@
 	    data() {
 	    	return {
           dataForAudit:{},
-          isDisabled:true
+          isDisabled:true,
+          isAuditDisabled:true
         }
 	  	},
     created(){
@@ -149,9 +150,11 @@
             if(val){
               this.dataForAudit = val;
               this.isDisabled = true;
+              this.isAuditDisabled = false;
             }else{
               this.dataForAudit = {};
               this.isDisabled = false;
+              this.isAuditDisabled = true;
             }
 	  			})
 	  		},
