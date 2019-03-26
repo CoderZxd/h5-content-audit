@@ -155,6 +155,7 @@
               this.dataForAudit = {};
               this.isDisabled = false;
               this.isAuditDisabled = true;
+              this.showNotification(-1);
             }
 	  			})
 	  		},
@@ -198,10 +199,17 @@
               type: 'success',
               position: 'bottom-right'
             });
-          }else{
+          }else if(num == 0){
             this.$notify({
               title: '警告',
               message: '人工审核失败,可联系相关人员进行处理!',
+              type: 'warning',
+              position: 'bottom-right'
+            });
+          }else if(num == -1){
+            this.$notify({
+              title: '警告',
+              message: '无下一条待人工审核信息!',
               type: 'warning',
               position: 'bottom-right'
             });
