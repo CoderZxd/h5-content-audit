@@ -38,6 +38,12 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 1. V1.0.0
 
    * config/index.js 修改host和port
+   * http.js 配置请求URL地址
    * store/index.js 添加modules
    * route.js 配置router
    * modules目录下创建相关module
+     * contentaudit.vue 为内容审核页面
+     
+####注
+   * 因为data_record_2019xxxx表中的operator字段类型为int,所以contentaudit.vue中暂时将operator设置为10001进行测试,后面待需求确认后,进行修改.
+   * 因为data_record_2019xxxx表为天粒度表,当前默认审核的数据是当天表的数据,前端可添加控件进行日期选择,选择审核指定日期的数据,需要前后端联合修改实现.

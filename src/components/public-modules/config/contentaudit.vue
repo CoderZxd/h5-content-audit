@@ -108,6 +108,9 @@
         <el-tooltip class="item" effect="dark" content="可按下键盘字母f或者Shift+f快速审核不通过" placement="top">
           <el-button type="danger" @click="failData('F')">不通过(F),审核下一条</el-button>
         </el-tooltip>
+        <el-tooltip class="item" effect="dark" content="可按下向下键(↓)获取下一条待审核信息" placement="top">
+          <el-button type="warning" @click="getDataForAudit" :disabled="isDisabled">下一条</el-button>
+        </el-tooltip>
       </el-form-item>
     </el-form>
 	</div>
@@ -116,7 +119,8 @@
 	export default {
 	    data() {
 	    	return {
-          dataForAudit:{}
+          dataForAudit:{},
+          isDisabled:true
         }
 	  	},
     created(){
@@ -129,6 +133,10 @@
           _self.passData(e.keyCode == 80?'P':'Y');
         }else if(e && (e.keyCode == 78 || e.keyCode == 70)){ //n或者N;f或者F
           _self.failData(e.keyCode == 70?'F':'N');
+        }else if(e.keyCode == 40){
+          if(!_self.isDisabled){
+            _self.getDataForAudit();
+          }
         }
       }
     },
@@ -140,21 +148,60 @@
 	  			this.$store.dispatch('getDataForAudit').then(val => {
             if(val){
               this.dataForAudit = val;
+              this.isDisabled = true;
             }else{
               this.dataForAudit = {};
+              this.isDisabled = false;
             }
 	  			})
 	  		},
         passData(code){
-          console.log("pass-------------------------");
-          if(code == 'P'){
-            this.getDataForAudit();
-          }
+          var _self = this;
+          var params = {};
+//          params.operator = sessionStorage.getItem('user');
+          params.operator = 10001;
+          params.dataId = _self.dataForAudit.data_id;
+          params.code = code;
+          this.$store.dispatch('updateDataForAudit',params).then(val => {
+            _self.showNotification(val);
+            if(val){
+              if(code == 'P'){
+                _self.getDataForAudit();
+              }
+            }
+          })
         },
         failData(code){
-          console.log("fail-------------------------");
-          if(code == 'F'){
-            this.getDataForAudit();
+          var _self = this;
+          var params = {};
+//          params.operator = sessionStorage.getItem('user');
+          params.operator = 10001;
+          params.dataId = _self.dataForAudit.data_id;
+          params.code = code;
+          this.$store.dispatch('updateDataForAudit',params).then(val => {
+            _self.showNotification(val);
+            if(val){
+              if(code == 'F'){
+                _self.getDataForAudit();
+              }
+            }
+          })
+        },
+        showNotification(num){
+          if(num > 0){
+            this.$notify({
+              title: '成功',
+              message: '人工审核成功',
+              type: 'success',
+              position: 'bottom-right'
+            });
+          }else{
+            this.$notify({
+              title: '警告',
+              message: '人工审核失败,可联系相关人员进行处理!',
+              type: 'warning',
+              position: 'bottom-right'
+            });
           }
         }
 	  	}

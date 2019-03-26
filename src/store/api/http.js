@@ -100,25 +100,17 @@ Inherit.Class = function( obj ){
 // }
 
 var baseUrl = window.baseUrl;
-// var baseUrl = window.res__;
-// var baseUrl = "http://192.168.25.61:8888";
 //所有请求路径参数配置入口
 const urlApi = {
   baseUrl : baseUrl,
   contentaudit:{
     getDataForAudit:Inherit.Class(function(){
-        this.url = urlApi.baseUrl + "getDataForAudit";
-      }),
-      addProductLine:Inherit.Class(function(){
-        this.url = urlApi.baseUrl + "/fx-mock-service/inner/prodline/addProductLine";
-      }),
-      updateProductLine:Inherit.Class(function(){
-        this.url = urlApi.baseUrl + "/fx-mock-service/inner/prodline/updateProductLine";
-      }),
-      deleteProductLine:Inherit.Class(function(){
-        this.url = urlApi.baseUrl + "/fx-mock-service/inner/prodline/deleteProductLine";
-      })
-    }
+      this.url = urlApi.baseUrl + "getDataForAudit";
+    }),
+    updateDataForAudit:Inherit.Class(function(){
+      this.url = urlApi.baseUrl + "updateDataForAudit";
+    })
   }
+}
 
 export default {urlApi}

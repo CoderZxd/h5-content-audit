@@ -64,17 +64,7 @@
 				sysName:'内容审核系统',
         sysNameShortName:'Audit',
 				collapsed:false,
-				sysUserName: '',
-				form: {
-					name: '',
-					region: '',
-					date1: '',
-					date2: '',
-					delivery: false,
-					type: [],
-					resource: '',
-					desc: ''
-				}
+				sysUserName: ''
 			}
 		},
 		methods: {
