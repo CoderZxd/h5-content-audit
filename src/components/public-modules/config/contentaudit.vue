@@ -109,7 +109,7 @@
           <el-button type="danger" @click="failData('F')" :disabled="isAuditDisabled">不通过(F),审核下一条</el-button>
         </el-tooltip>
         <el-tooltip class="item" effect="dark" content="可按下向下键(↓)获取下一条待审核信息" placement="top">
-          <el-button type="warning" @click="getDataForAudit" :disabled="isDisabled">下一条</el-button>
+          <el-button type="warning" @click="getDataForAudit" :disabled="isDisabled">下一条(↓)</el-button>
         </el-tooltip>
       </el-form-item>
     </el-form>
