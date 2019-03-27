@@ -171,6 +171,9 @@
             if(val){
               if(code == 'P'){
                 _self.getDataForAudit();
+              }else{
+                this.isDisabled = false;
+                this.isAuditDisabled = true;
               }
             }
           })
@@ -187,6 +190,9 @@
             if(val){
               if(code == 'F'){
                 _self.getDataForAudit();
+              }else{
+                this.isDisabled = false;
+                this.isAuditDisabled = true;
               }
             }
           })
